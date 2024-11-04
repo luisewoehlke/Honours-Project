@@ -12,5 +12,6 @@ func _process(delta: float) -> void:
 
 func _on_doors_body_entered(body: Node2D) -> void:
 	get_node(Paths.level_street).queue_free()
-	var level0 = load("res://scenes/level0.tscn").instantiate()
+	var level0 = load("res://scenes/levels/level0.tscn").instantiate()
 	get_node("/root/Game").add_child(level0)
+	get_node(Paths.player).position = Vector2(56,168)

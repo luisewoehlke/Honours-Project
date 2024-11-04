@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://ds4rhlpmojscc"]
+
+[ext_resource type="PackedScene" uid="uid://dg24ni7f6g3ux" path="res://scenes/_npc.tscn" id="1_xvuhp"]
+[ext_resource type="Script" path="res://scripts/npcs/rival.gd" id="2_qcktv"]
+[ext_resource type="Texture2D" uid="uid://bi7xutgydts63" path="res://assets/sprites/npcs/rival.png" id="2_v1yk1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3pk6"]
+atlas = ExtResource("2_v1yk1")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18s3h"]
+atlas = ExtResource("2_v1yk1")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_enqck"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3pk6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_18s3h")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}]
+
+[node name="Rival" instance=ExtResource("1_xvuhp")]
+script = ExtResource("2_qcktv")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_enqck")
+animation = &"right"
+autoplay = "right"

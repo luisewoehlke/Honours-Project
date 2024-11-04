@@ -37,8 +37,9 @@ func _ready() -> void:
 	
 	for i in talk.size():
 		if (talk[i] is String):
-			talk[i] = talk[i].replace("%c", "[color=orange]").replace("c%", "[/color]")
-
+			talk[i] = talk[i].replace("{", "[color=orange]").replace("}", "[/color]")
+	re_talk = re_talk.replace("{", "[color=orange]").replace("}", "[/color]")
+	
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("j"):
 		if state == states.TALK:
@@ -155,7 +156,7 @@ func exit_problem() -> void:
 	get_node(Paths.problem).visible = false
 	progress_talk()
 
-func end_interact() -> void: # when problem was already solved
+func end_interact() -> void:
 	set_process_unhandled_key_input(false)
 	get_node(Paths.problem).visible = false	
 	var dialogueBox = get_node(Paths.dialogue_box)	

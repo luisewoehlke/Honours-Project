@@ -1,18 +1,25 @@
 extends Node2D
 
-var stonks
+var stonks: float = 0
 var noInteractor: Node2D = Node2D.new()
 var interactor: Node2D = noInteractor
-enum states {EXPOSITION, GAME}
-var state: states = states.EXPOSITION
-var exposition: Array[String]
-var exposition_i: int
+enum states {OVERLAY, GAME}
+var state: states = states.OVERLAY
+var overlay_talk: Array[String]
+var overlay_i: int
+
+var exposition: Array[String] = [
+		"You wake up on an empty street. Your head hurts. You remember NOTHING.\t\t {%iPress Ji%}",
+		"Where are you? Why are you a knight?? Your name???\t\t {%iPress Ji%}",
+		"You decide to call yourself {LORD RUDOLPHUS II} from now on.\t\t {%iPress Ji%}",
+		"You only remember one thing:", # You need to press {J} to interact.\t\t {%iPress Ji%}
+		#"Oh, and you remember one other thing:",
+		"{YOU NEED TO GET RICH.}"
+	]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	stonks = 0
-	print("stonks: ", stonks)
-	set_up_exposition()
+	overlay(exposition)
 
 func setup_interactable_signal(npc: StaticBody2D) -> void:
 	npc.connect("interactable", _on_npc_interactable)
@@ -20,36 +27,31 @@ func setup_interactable_signal(npc: StaticBody2D) -> void:
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("j"):
-		if state == states.EXPOSITION:
-			progress_exposition()
+		if state == states.OVERLAY:
+			progress_overlay()
 		elif state == states.GAME:
 			interaction()
 
-func progress_exposition() -> void:
-	exposition_i += 1
-	if exposition_i == exposition.size():
+func progress_overlay() -> void:
+	overlay_i += 1
+	if overlay_i == overlay_talk.size():
 		state = states.GAME
 		get_node(Paths.dialogue_box).visible = false
 		get_node(Paths.player).set_physics_process(true)
 	else:
 		var label = get_node(Paths.dialogue_label)
-		label.text = exposition[exposition_i]
+		label.text = overlay_talk[overlay_i]
 
-func set_up_exposition() -> void:
-	exposition = [
-		"You wake up on an empty street. Your head hurts. You remember NOTHING.\t\t %c%iPress Ji%c%",
-		"Where are you? Why are you a knight?? Your name???\t\t %c%iPress Ji%c%",
-		"You decide to call yourself %cLORD RUDOLPHUS IIc% from now on.\t\t %c%iPress Ji%c%",
-		"You only remember one thing:", # You need to press %cJc% to interact.\t\t %c%iPress Ji%c%
-		#"Oh, and you remember one other thing:",
-		"%cYOU NEED TO GET RICH.%c"
-	]
-	for i in exposition.size():
-		exposition[i] = exposition[i].replace("%i", "[i]").replace("i%", "[/i]")
-		exposition[i] = exposition[i].replace("%c", "[color=orange]").replace("c%", "[/color]")
-	exposition_i = 0
+func overlay(talk: Array[String]) -> void:
+	state = states.OVERLAY
+	get_node(Paths.player).set_physics_process(false)
+	for i in talk.size():
+		talk[i] = talk[i].replace("%i", "[i]").replace("i%", "[/i]")
+		talk[i] = talk[i].replace("{", "[color=orange]").replace("}", "[/color]")
+	overlay_i = 0
+	overlay_talk = talk
 	get_node(Paths.dialogue_box).visible = true
-	get_node(Paths.dialogue_label).text = exposition[exposition_i]
+	get_node(Paths.dialogue_label).text = overlay_talk[overlay_i]
 
 func interaction() -> void:
 	if (interactor != noInteractor):

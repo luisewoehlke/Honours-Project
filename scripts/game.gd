@@ -12,11 +12,12 @@ var exposition_i: int
 func _ready() -> void:
 	stonks = 0
 	print("stonks: ", stonks)
-	for npc in get_tree().get_nodes_in_group("NPCs"):
-		npc.connect("interactable", _on_npc_interactable)
-		npc.connect("not_interactable", _on_npc_not_interactable)
 	set_up_exposition()
-	
+
+func setup_interactable_signal(npc: StaticBody2D) -> void:
+	npc.connect("interactable", _on_npc_interactable)
+	npc.connect("not_interactable", _on_npc_not_interactable)
+
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("j"):
 		if state == states.EXPOSITION:
@@ -39,8 +40,8 @@ func set_up_exposition() -> void:
 		"You wake up on an empty street. Your head hurts. You remember NOTHING.\t\t %c%iPress Ji%c%",
 		"Where are you? Why are you a knight?? Your name???\t\t %c%iPress Ji%c%",
 		"You decide to call yourself %cLORD RUDOLPHUS IIc% from now on.\t\t %c%iPress Ji%c%",
-		"You only remember one thing: You need to press %cJc% to interact.\t\t %c%iPress Ji%c%",
-		"Oh, and you remember one other thing:",
+		"You only remember one thing:", # You need to press %cJc% to interact.\t\t %c%iPress Ji%c%
+		#"Oh, and you remember one other thing:",
 		"%cYOU NEED TO GET RICH.%c"
 	]
 	for i in exposition.size():

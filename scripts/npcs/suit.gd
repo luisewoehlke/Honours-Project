@@ -19,11 +19,12 @@ func initialize_talk() -> void:
 		"So Lidl is a discounter supermaket chain? How should I know?? Do I look like I do my own shopping??",
 		"Alright, I'll give you the returns of the investment if you don't tell a soul about this exchange.",
 		give_roi,
-		"%cLord Rudolphus IIc% obtained %c$100c%!"
+		"%cLord Rudolphus IIc% obtained %c£100c%!"
 	]
 
 func give_roi() -> void:
-	get_node("/root/Game").update_stonks(100)
+	get_node("/root/Game").update_stonks(1000)
+	get_node(Paths.stonks).visible = true
 	progress_talk()
 	
 	

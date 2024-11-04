@@ -11,3 +11,5 @@ var ci_items = "/root/Game/Player/Problem/TabContainer/CIProblemTab/VBoxContaine
 var solution_items = "/root/Game/Player/Problem/TabContainer/SolutionTab/VBoxContainer"
 var stonks = "/root/Game/Player/GUI/Control/Overlays/Stonks"
 var player = "/root/Game/Player"
+var level_street = "/root/Game/LevelStreet"
+var tilemap_level0 = "/root/Game/Level0/TileMapLayer2"

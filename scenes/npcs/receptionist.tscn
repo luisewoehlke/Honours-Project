@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://b04jo145jqyw2"]
+
+[ext_resource type="PackedScene" uid="uid://dg24ni7f6g3ux" path="res://scenes/_npc.tscn" id="1_61nwv"]
+[ext_resource type="Script" path="res://scripts/npcs/receptionist.gd" id="2_vvs5n"]
+[ext_resource type="Texture2D" uid="uid://b7jijern7bi2w" path="res://assets/sprites/npcs/receptionist.png" id="3_vvmor"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ckpbs"]
+atlas = ExtResource("3_vvmor")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i0ssc"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ckpbs")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Receptionist" instance=ExtResource("1_61nwv")]
+script = ExtResource("2_vvs5n")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_i0ssc")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(0, 16)

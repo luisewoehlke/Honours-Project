@@ -26,10 +26,13 @@ var state: states = states.NONE
 var problems: Array[Problem]
 var talk: Array
 var talk_i: int = 0
+var re_talk: String = "You've already solved my problems."
 
 func _ready() -> void:
 	set_process_unhandled_key_input(false)
 	add_to_group("NPCs")
+	var game_node = get_node("/root/Game")
+	game_node.setup_interactable_signal(self)
 	initialize_talk()
 	
 	for i in talk.size():
@@ -165,7 +168,7 @@ func interact() -> void:	# currently interactions always have to
 	var label = get_node(Paths.dialogue_label)
 	
 	if is_talk_done():
-		label.text = "You've already solved my problems."
+		label.text = re_talk
 	else:
 		label.text = talk[0]
 	get_node(Paths.dialogue_box).visible = true

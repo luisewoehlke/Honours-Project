@@ -27,6 +27,7 @@ theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
 
 [node name="Stonks" type="Label" parent="Control/Overlays"]
+visible = false
 z_index = 5
 layout_mode = 2
 theme_type_variation = &"HeaderLarge"

@@ -20,7 +20,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Npc" instance=ExtResource("1_27xaa")]
+[node name="Suit" instance=ExtResource("1_27xaa")]
 script = ExtResource("2_4cu0p")
 
 [node name="AnimatedSprite2D" parent="." index="1"]

@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://og4dtia74a3a"]
+
+[ext_resource type="PackedScene" uid="uid://dg24ni7f6g3ux" path="res://scenes/_npc.tscn" id="1_6xt67"]
+[ext_resource type="Script" path="res://scripts/npcs/dorothy.gd" id="2_h2eb3"]
+[ext_resource type="Texture2D" uid="uid://ci5hvpbwsug2n" path="res://assets/sprites/npcs/dorothy.png" id="2_qnrgn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o7jw6"]
+atlas = ExtResource("2_qnrgn")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_saoti"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o7jw6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Npc" instance=ExtResource("1_6xt67")]
+script = ExtResource("2_h2eb3")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_saoti")

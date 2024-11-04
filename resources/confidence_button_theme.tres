@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://dgopburaqu5fp"]
+
+[ext_resource type="StyleBox" uid="uid://buwowiuy7f6fo" path="res://resources/confidence_button_pressed.tres" id="1_8xur2"]
+[ext_resource type="StyleBox" uid="uid://c1tiqgy6tqhcy" path="res://resources/confidence_button_normal.tres" id="2_cx4oc"]
+
+[resource]
+Button/styles/hover = ExtResource("1_8xur2")
+Button/styles/normal = ExtResource("2_cx4oc")
+Button/styles/pressed = ExtResource("1_8xur2")

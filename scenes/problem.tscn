@@ -1,0 +1,370 @@
+[gd_scene load_steps=16 format=3 uid="uid://dtwv58hyxjkks"]
+
+[ext_resource type="Script" path="res://scripts/problem.gd" id="1_e82g0"]
+[ext_resource type="Script" path="res://scripts/ci_timer.gd" id="1_v0vq2"]
+[ext_resource type="ButtonGroup" uid="uid://cxixf0jfwywn4" path="res://option_buttons.tres" id="2_2owax"]
+[ext_resource type="StyleBox" uid="uid://buwowiuy7f6fo" path="res://resources/confidence_button_pressed.tres" id="2_25d5o"]
+[ext_resource type="Theme" uid="uid://dml5j13ne3le" path="res://resources/margin_container_50.tres" id="2_iw6q6"]
+[ext_resource type="ButtonGroup" uid="uid://2mp547qul1gt" path="res://confidence_buttons.tres" id="3_218j2"]
+[ext_resource type="StyleBox" uid="uid://c1tiqgy6tqhcy" path="res://resources/confidence_button_normal.tres" id="4_h0f6d"]
+[ext_resource type="Theme" uid="uid://dgopburaqu5fp" path="res://resources/confidence_button_theme.tres" id="4_jqp5j"]
+[ext_resource type="Script" path="res://scripts/multiple_choice_timer.gd" id="4_vudef"]
+[ext_resource type="Theme" uid="uid://dhye4uy8447tt" path="res://resources/submit_button_theme.tres" id="8_w0npi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b80y7"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_dc0x1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_182l0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5rgdf"]
+bg_color = Color(1.92523e-07, 0.726775, 0.147848, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hfk23"]
+bg_color = Color(0, 0.441685, 0.6939, 1)
+
+[node name="problem" type="CanvasLayer"]
+script = ExtResource("1_e82g0")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_b80y7")
+current_tab = 0
+clip_tabs = false
+tabs_visible = false
+
+[node name="MultipleChoiceProblemTab" type="MarginContainer" parent="TabContainer"]
+layout_mode = 2
+theme = ExtResource("2_iw6q6")
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/MultipleChoiceProblemTab"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Question" type="RichTextLabel" parent="TabContainer/MultipleChoiceProblemTab/VBoxContainer"]
+layout_mode = 2
+focus_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "This should be replaced with the problem"
+fit_content = true
+selection_enabled = true
+
+[node name="Option1" type="Button" parent="TabContainer/MultipleChoiceProblemTab/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 30
+theme_override_styles/pressed = ExtResource("2_25d5o")
+toggle_mode = true
+button_group = ExtResource("2_2owax")
+text = "option 1 should appear here"
+
+[node name="Option2" type="Button" parent="TabContainer/MultipleChoiceProblemTab/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 30
+theme_override_styles/pressed = ExtResource("2_25d5o")
+toggle_mode = true
+button_group = ExtResource("2_2owax")
+text = "option 2 should appear here"
+
+[node name="Option3" type="Button" parent="TabContainer/MultipleChoiceProblemTab/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 30
+theme_override_styles/pressed = ExtResource("2_25d5o")
+toggle_mode = true
+button_group = ExtResource("2_2owax")
+text = "option 3 should appear here"
+
+[node name="Option4" type="Button" parent="TabContainer/MultipleChoiceProblemTab/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 30
+theme_override_styles/pressed = ExtResource("2_25d5o")
+toggle_mode = true
+button_group = ExtResource("2_2owax")
+text = "option 4 should appear here"
+
+[node name="ConfidenceButtons" type="HBoxContainer" parent="TabContainer/MultipleChoiceProblemTab/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_jqp5j")
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="25Confidence" type="Button" parent="TabContainer/MultipleChoiceProblemTab/VBoxContainer/ConfidenceButtons"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+theme = ExtResource("4_jqp5j")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/pressed = ExtResource("2_25d5o")
+theme_override_styles/normal = ExtResource("4_h0f6d")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_dc0x1")
+text = "25%"
+
+[node name="30Confidence" type="Button" parent="TabContainer/MultipleChoiceProblemTab/VBoxContainer/ConfidenceButtons"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 30
+theme_override_styles/pressed = ExtResource("2_25d5o")
+theme_override_styles/normal = ExtResource("4_h0f6d")
+toggle_mode = true
+button_group = ExtResource("3_218j2")
+text = "30%"
+
+[node name="40Confidence" type="Button" parent="TabContainer/MultipleChoiceProblemTab/VBoxContainer/ConfidenceButtons"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 30
+theme_override_styles/pressed = ExtResource("2_25d5o")
+theme_override_styles/normal = ExtResource("4_h0f6d")
+toggle_mode = true
+button_group = ExtResource("3_218j2")
+text = "40%"
+
+[node name="50Confidence" type="Button" parent="TabContainer/MultipleChoiceProblemTab/VBoxContainer/ConfidenceButtons"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 30
+theme_override_styles/pressed = ExtResource("2_25d5o")
+theme_override_styles/normal = ExtResource("4_h0f6d")
+toggle_mode = true
+button_group = ExtResource("3_218j2")
+text = "50%"
+
+[node name="60Confidence" type="Button" parent="TabContainer/MultipleChoiceProblemTab/VBoxContainer/ConfidenceButtons"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 30
+theme_override_styles/pressed = ExtResource("2_25d5o")
+theme_override_styles/normal = ExtResource("4_h0f6d")
+toggle_mode = true
+button_group = ExtResource("3_218j2")
+text = "60%"
+
+[node name="70Confidence" type="Button" parent="TabContainer/MultipleChoiceProblemTab/VBoxContainer/ConfidenceButtons"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 30
+theme_override_styles/pressed = ExtResource("2_25d5o")
+theme_override_styles/normal = ExtResource("4_h0f6d")
+toggle_mode = true
+button_group = ExtResource("3_218j2")
+text = "70%"
+
+[node name="80Confidence" type="Button" parent="TabContainer/MultipleChoiceProblemTab/VBoxContainer/ConfidenceButtons"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 30
+theme_override_styles/pressed = ExtResource("2_25d5o")
+theme_override_styles/normal = ExtResource("4_h0f6d")
+toggle_mode = true
+button_group = ExtResource("3_218j2")
+text = "80%"
+
+[node name="90Confidence" type="Button" parent="TabContainer/MultipleChoiceProblemTab/VBoxContainer/ConfidenceButtons"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 30
+theme_override_styles/pressed = ExtResource("2_25d5o")
+theme_override_styles/normal = ExtResource("4_h0f6d")
+toggle_mode = true
+button_group = ExtResource("3_218j2")
+text = "90%"
+
+[node name="100Confidence" type="Button" parent="TabContainer/MultipleChoiceProblemTab/VBoxContainer/ConfidenceButtons"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+theme = ExtResource("4_jqp5j")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = ExtResource("2_25d5o")
+theme_override_styles/pressed = ExtResource("2_25d5o")
+theme_override_styles/normal = ExtResource("4_h0f6d")
+toggle_mode = true
+button_group = ExtResource("3_218j2")
+text = "100%"
+
+[node name="ProblemTimer" type="ProgressBar" parent="TabContainer/MultipleChoiceProblemTab/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_182l0")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5rgdf")
+max_value = 30.0
+value = 30.0
+show_percentage = false
+script = ExtResource("4_vudef")
+
+[node name="Error" type="RichTextLabel" parent="TabContainer/MultipleChoiceProblemTab/VBoxContainer"]
+layout_mode = 2
+focus_mode = 2
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+fit_content = true
+selection_enabled = true
+
+[node name="SubmitButton" type="Button" parent="TabContainer/MultipleChoiceProblemTab/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("8_w0npi")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_hfk23")
+text = "submit"
+
+[node name="CIProblemTab" type="MarginContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("2_iw6q6")
+metadata/_tab_index = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/CIProblemTab"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Question" type="RichTextLabel" parent="TabContainer/CIProblemTab/VBoxContainer"]
+layout_mode = 2
+focus_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "
+PROBLEM 1
+
+bla bla Corresponds to the NOTIFICATION_READY notification in Object._notification(). See also the @onready annotation for variables. Usually used for initialization. For even earlier initialization, Object._init() may be used. See also _enter_tree().
+
+80% Confidence Interval:"
+fit_content = true
+selection_enabled = true
+
+[node name="CILowerBound" type="LineEdit" parent="TabContainer/CIProblemTab/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 34
+placeholder_text = "Lower Bound"
+flat = true
+caret_force_displayed = true
+
+[node name="CIUpperBound" type="LineEdit" parent="TabContainer/CIProblemTab/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 34
+placeholder_text = "Upper Bound"
+flat = true
+caret_force_displayed = true
+
+[node name="ProblemTimer" type="ProgressBar" parent="TabContainer/CIProblemTab/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_182l0")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5rgdf")
+max_value = 30.0
+value = 30.0
+show_percentage = false
+script = ExtResource("1_v0vq2")
+
+[node name="Error" type="RichTextLabel" parent="TabContainer/CIProblemTab/VBoxContainer"]
+layout_mode = 2
+focus_mode = 2
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+fit_content = true
+selection_enabled = true
+
+[node name="SubmitButton" type="Button" parent="TabContainer/CIProblemTab/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("8_w0npi")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_hfk23")
+text = "submit"
+
+[node name="SolutionTab" type="MarginContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("2_iw6q6")
+metadata/_tab_index = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/SolutionTab"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Question" type="RichTextLabel" parent="TabContainer/SolutionTab/VBoxContainer"]
+layout_mode = 2
+focus_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "this should be replaced with the problem"
+fit_content = true
+selection_enabled = true
+
+[node name="Correct?" type="RichTextLabel" parent="TabContainer/SolutionTab/VBoxContainer"]
+layout_mode = 2
+focus_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "this should say correct or incorrect"
+fit_content = true
+selection_enabled = true
+
+[node name="Solution" type="RichTextLabel" parent="TabContainer/SolutionTab/VBoxContainer"]
+layout_mode = 2
+focus_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "this should show the correct solution"
+fit_content = true
+selection_enabled = true
+
+[node name="Confidence" type="RichTextLabel" parent="TabContainer/SolutionTab/VBoxContainer"]
+layout_mode = 2
+focus_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "This should show the submitted CI"
+fit_content = true
+selection_enabled = true
+
+[node name="ExitButton" type="Button" parent="TabContainer/SolutionTab/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("8_w0npi")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_hfk23")
+text = "Exit"
+
+[connection signal="pressed" from="TabContainer/MultipleChoiceProblemTab/VBoxContainer/SubmitButton" to="." method="_on_multiple_choice_submit_button_pressed"]
+[connection signal="pressed" from="TabContainer/CIProblemTab/VBoxContainer/SubmitButton" to="." method="_on_ci_submit_button_pressed"]
+[connection signal="pressed" from="TabContainer/SolutionTab/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
